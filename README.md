@@ -123,6 +123,10 @@ Hints:
 
 Hint: Use the provided helper function for longest prefix matching between the destination IP address and networks in the forwarding table.
 
+## Network Map
+
+![](netmap.png)
+
 ## Data Structures for the Router class
 
 The Router class is provided information about the interfaces and direct connections at initialization, akin to configuring a router when it is installed.

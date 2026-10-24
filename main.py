@@ -100,7 +100,6 @@ server_thread = None
 
 def main():
     routers = []
-    router_id = 1
 
     for router_id, (interfaces, direct_connections) in ROUTER_INTERFACE_DATA.items():
         routers.append(Router(router_id, interfaces, direct_connections))
