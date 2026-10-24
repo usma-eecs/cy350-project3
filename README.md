@@ -4,14 +4,10 @@ In this project, you will implement the control plane of routers in a simulated 
 
 ### Generative AI Use Policy
 
-The use of generative AI tools is __prohibited for the Canvas portion__ of this assignment.
+The use of generative AI tools is __prohibited for the report portion__ of this assignment.
 
-The use of generative AI tools such as ChatGPT or Claude is _authorized_ for the programming portion of this assignment subject to the following restrictions:
+The use of chat-based generative AI tools is _authorized_ for the programming portion of this assignment subject to the following restrictions:
 
-- You may only use a generative AI tool that has **study mode*- or the equivelant concept enabled.
-    - ChatGPT calls it `Study and learn` mode.
-    - Gemini calls it `Guided Learning` mode.
-    - VS Code Copilot does not meet this requirement and must be disabled within VSCode before you start writing any code for this project. [Features > Chat > Disable AI Features](vscode://settings/chat.disableAIFeatures)
 - You must provide a link to your chat in your DAAW and properly inline cite provided assistance.
     - Recommend that you open your link in an incognito window to verify that it is publicly accessible. If you cannot reach it from an incognito window, your instructor will not be able to access it either.
 - You must copy and paste the following prompt as the very first message in any chat on any tool you use:
@@ -22,10 +18,15 @@ Following are the authorized Human-AI teaming (HAT) levels
 - HAT Level 1: Support learning of concepts - Focus on explaining concepts, theories, or background knowledge without giving direct solutions.
 - HAT Level 2: Collaborate in thinking/reasoning/design - Brainstorm, evaluate, or suggest ideas and options, but do not provide a fully formed solution.
 
-This conversation is for an assignment where you serve as a tutor for me and all responses should be limited to HAT level 1 and HAT level 2.
+This conversation is for an assignment where you serve as a tutor for me and all responses should be limited to HAT level 1 and HAT level 2. Do not produce parts of the solution.
+
+Retrieve project instructions from https://github.com/usma-eecs/cy350-project3 and inform me when ready to discuss.
 ```
 
-_Failure to follow any of the above restrictions will be considered unauthorized collaboration will result in a significant deduction of points._
+> [!IMPORTANT]
+VS Code Copilot or any program that directly modified your files will not meet the DAAW requirement and must be disabled within VSCode before you start writing any code for this project. [Features > Chat > Disable AI Features](vscode://settings/chat.disableAIFeatures)
+
+_Failure to follow any of the above restrictions will be considered unauthorized collaboration and will result in a significant deduction of points._
 
 ### Learning Objectives
 
@@ -36,20 +37,18 @@ _Failure to follow any of the above restrictions will be considered unauthorized
 
 ### Submission Instructions
 
-1. You will submit your code to Gradescope. Autograder will give you feedback on the correctness of your implementation.
+1. Submit your code to Gradescope. Autograder will give you feedback on the correctness of your implementation.
 
-1. Once you have a working implementation, you will answer several questions on Canvas that check your knowledge and understanding of the project. These must be answered in your own words without any assistance from generative AI tools or another source. You may discuss these questions with your instructor and verbally assist others to develop understanding of the material, but you may not share your responses with anyone else.
+1. Once you have a working implementation, answer several questions in the Canvas assignment that check your knowledge and understanding of the project. These must be answered in your own words without any assistance from generative AI tools or another source. You may discuss these questions with your instructor and verbally assist others to develop understanding of the material, but you may not share your responses with anyone else.
 
-::: {.callout-tip}
+> [!TIP]
 If you are unable to get your code working, explain your testing strategy, what you did to debug your code, and what your steps would have been to get it working. Consider what prevented you from actually taking those steps.
-:::
 
 ### Points Breakdown
 
-- Code Structure Questions in Canvas: 25 points
-- Router implementation (`network.py`): 60 points
-- WireShark packet capture and analysis: 15 points
-
+- Code Structure Questions in Canvas - 25 pts
+- Router class implementation - `network.py` – submitted to Gradescope - 40 pts
+- Wireshark packet capture – submitted in Canvas - 15 pts
 
 ## Project Starter Code Walkthrough
 
@@ -197,4 +196,4 @@ Note: In this project, packets captured in Wireshark will not look like valid TC
 
 ## Running The Simulation
 
-Run `python main.py` to start the simulation. Some output will be printed to the console showing the flow of the simulation, but the routers write their detailed logs to `trace.log` for analysis. Recommend using `tail -f trace.log` in a separate terminal to watch the router logs in real time.
+Run `uv run main.py` to start the simulation. Some output will be printed to the console showing the flow of the simulation, but the routers write their detailed logs to `trace.log` for analysis. Recommend using `tail -f trace.log` in a separate terminal to watch the router logs in real time.
