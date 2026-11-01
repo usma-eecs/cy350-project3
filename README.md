@@ -1,30 +1,29 @@
-## Overview
+## 📋 Overview
 
 In this project, you will implement the control plane of routers in a simulated network. You will implement link-state routing in a scenario where multiple routers exchange link-state advertisements (LSAs) to build a global view of the network topology. Each router will then compute shortest paths to all other routers using Dijkstra's algorithm and populate a forwarding table for packet routing.
 
-### Generative AI Use Policy
+## 🤖 GenAI Use Policy
 
-The use of generative AI tools is __prohibited for the report portion__ of this assignment.
+### 📝 Report Portion - no GenAI assistance
 
-The use of chat-based generative AI tools is _authorized_ for the programming portion of this assignment subject to the following restrictions:
+The use of GenAI tools is __prohibited for the report portion__ of this assignment. Do not copy-paste any of the questions from the assignment into any external tool.
 
-- You must provide a link to your chat in your DAAW and properly inline cite provided assistance.
-    - Recommend that you open your link in an incognito window to verify that it is publicly accessible. If you cannot reach it from an incognito window, your instructor will not be able to access it either.
-- You must copy and paste the following prompt as the very first message in any chat on any tool you use:
+### 👥 Programming Portion - Full Teaming, Cadet-Owned Work
+
+The use of chat-based GenAI tools is _authorized_ for the programming portion of this assignment.
+
+GenAI may support the work throughout the process, including drafting, revising, coding, debugging, summarizing, analyzing, generating, or refining the submitted product. Cadets must validate GenAI contributions, acknowledge assistance, and remain responsible for the final submission.
+
+Recommended first prompt:
 
 ```txt
-Following are the authorized Human-AI teaming (HAT) levels
-
-- HAT Level 1: Support learning of concepts - Focus on explaining concepts, theories, or background knowledge without giving direct solutions.
-- HAT Level 2: Collaborate in thinking/reasoning/design - Brainstorm, evaluate, or suggest ideas and options, but do not provide a fully formed solution.
-
-This conversation is for an assignment where you serve as a tutor for me and all responses should be limited to HAT level 1 and HAT level 2. Do not produce parts of the solution.
+This conversation is for an assignment where you serve as a tutor for me. Help me to understand key concepts required to solve this assignment. Do not give me a fully formed solution. Instead, walk me through the steps required to solve the problem.
 
 Retrieve project instructions from https://github.com/usma-eecs/cy350-project3 and inform me when ready to discuss.
 ```
 
 > [!IMPORTANT]
-VS Code Copilot or any program that directly modified your files will not meet the DAAW requirement and must be disabled within VSCode before you start writing any code for this project. [Features > Chat > Disable AI Features](vscode://settings/chat.disableAIFeatures)
+> VS Code Copilot or any tools that directly modify your files cannot meet the DAAW requirement and must be disabled before you start writing any code for this project. [Features > Chat > Disable AI Features](vscode://settings/chat.disableAIFeatures)
 
 _Failure to follow any of the above restrictions will be considered unauthorized collaboration and will result in a significant deduction of points._
 
@@ -39,18 +38,19 @@ _Failure to follow any of the above restrictions will be considered unauthorized
 
 1. Submit your code to Gradescope. Autograder will give you feedback on the correctness of your implementation.
 
-1. Once you have a working implementation, answer several questions in the Canvas assignment that check your knowledge and understanding of the project. These must be answered in your own words without any assistance from generative AI tools or another source. You may discuss these questions with your instructor and verbally assist others to develop understanding of the material, but you may not share your responses with anyone else.
+1. Once you have a working implementation, answer several questions in the Canvas assignment that check your knowledge and understanding of the project. These must be answered in your own words without any assistance from GenAI tools or another source. You may discuss these questions with your instructor and verbally assist others to develop understanding of the material, but you may not share your responses with anyone else.
 
 > [!TIP]
 If you are unable to get your code working, explain your testing strategy, what you did to debug your code, and what your steps would have been to get it working. Consider what prevented you from actually taking those steps.
 
-### Points Breakdown
+### 🏅 Points Breakdown
 
-- Code Structure Questions in Canvas - 25 pts
-- Router class implementation - `network.py` – submitted to Gradescope - 40 pts
-- Wireshark packet capture – submitted in Canvas - 15 pts
+- Router class implementation `network.py` submitted to Gradescope: 20 points
+- Code Structure Questions in Canvas: 25 points
+- Wireshark packet capture – submitted in Canvas: 15 points
+- In-Class Quiz: 20 points
 
-## Project Starter Code Walkthrough
+## 📦 Project Starter Code Walkthrough
 
 The project starter code is organized into the following modules:
 
@@ -59,9 +59,9 @@ The project starter code is organized into the following modules:
 - `application.py`: HTTP client and server behavior, handshake logic, request segmentation, and response handling.
 - `main.py`: simulation startup, thread management, router bootstrapping, and launch flow.
 
-## Module Responsibilities
+## ⚙️ Module Responsibilities
 
-### `network.py`
+### 📡 `network.py`
 
 This module owns network-layer behavior.
 
@@ -70,9 +70,10 @@ This module owns network-layer behavior.
 
 This is the main place to work if you are changing router behavior or shortest-path logic.
 
-Note: You are required to implement the portions of the Router class as described in the project instructions. The rest of the class is provided as a starting point and should not be modified.
+> [!IMPORTANT]
+> You are required to implement the portions of the Router class as described in the project instructions. The rest of the class is provided as a starting point and should not be modified.
 
-### `protocol.py`
+### 📦 `transport.py`
 
 This module contains network-layer serialization logic for the custom IP header and datagram formats.
 
@@ -80,7 +81,7 @@ This module contains network-layer serialization logic for the custom IP header 
 - `LSADatagram` class inherits from `IPHeader` and adds attributes and methods for handling Link-State Advertisements (LSAs).
 - `HTTPDatagram` class inherits from `IPHeader` and adds TCP-like attributes for handling HTTP-like packets in custom datagram formats.
 
-### `application.py`
+### 🌐 `application.py`
 
 This module contains HTTP transfer behavior built on top of the custom transport format:
 
@@ -88,7 +89,7 @@ This module contains HTTP transfer behavior built on top of the custom transport
 
 - `Server` class simulates a basic server using raw sockets and demonstrates core concepts such as connection establishment (three-way handshake), reliable data transmission (Go-Back-N protocol), and HTTP request/response processing.
 
-### `main.py`
+### 🎯 `main.py`
 
 This is the runtime entry point for the simulation. It provides:
 
@@ -97,37 +98,39 @@ This is the runtime entry point for the simulation. It provides:
 - thread startup for routers and the server
 - client launch and resource request flow
 
-## Building the Router
+## 🏗️ Building the Router
 
 For this project, you will complete the implementation of a Router class that forwards packets between the client and the server. You will need to simulate a routing protocol, ensuring that packets are forwarded based on the destination IP address and the appropriate next hop. Upon completion, the Router will be capable of:
 
 - Initializing the Link-State Database (LSDB) of the router based on the direct connections.
 
-Hint: Review the code documentation to understand the data structure for storing the LSDB on the router.
+> [!TIP]
+> 💡 Review the code documentation to understand the data structure for storing the LSDB on the router.
 
 - Processing a Link-State Advertisement (LSA) to either:
     - Update the LSDB with the information provided and forward the LSA to all other interfaces except the one on which it was received.
     - Or, discard the LSA since it has already been seen and processed by the router.
 
-Hints:
-    - The LSA has a sequence number that can be stored locally and compared with that of future LSAs.
-    - Review the code documentation to understand the format for LSA data in packet.
+> [!TIP]
+> - The LSA has a sequence number that can be stored locally and compared with that of future LSAs.
+> - Review the code documentation to understand the format for LSA data in packet.
 
-- Running a link-state routing protocol using Djikstra’s algorithm once the LSDB is complete.
+- Running a link-state routing protocol using Dijkstra's algorithm once the LSDB is complete.
 
-Hints:
-    - Refer to Lesson 17 to review Djikstra's algorithm.
-    - Review the code documentation to understand the data structure for storing the forwarding table on the router.
+> [!TIP]
+> - Refer to Lesson 17 to review Dijkstra's algorithm.
+> - Review the code documentation to understand the data structure for storing the forwarding table on the router.
 
 - Forwarding TCP segments at each router between the client and server.
 
-Hint: Use the provided helper function for longest prefix matching between the destination IP address and networks in the forwarding table.
+> [!TIP]
+> Use the provided helper function for longest prefix matching between the destination IP address and networks in the forwarding table.
 
 ## Network Map
 
 ![](netmap.png)
 
-## Data Structures for the Router class
+## 💾 Data Structures for the Router class
 
 The Router class is provided information about the interfaces and direct connections at initialization, akin to configuring a router when it is installed.
 
@@ -143,9 +146,9 @@ Example router interfaces (R1):
 
 Example router direct connections (R1):
 
-```
+```python
 {
-        ‘127.0.0.0/24’: (0, ‘Gi0/1’),
+    '127.0.0.0/24': (0, 'Gi0/1'),
         ‘2.2.2.2’: (3, ‘Gi0/2’),
         ‘3.3.3.3’: (9, ‘Gi0/3’)
 }
@@ -188,7 +191,7 @@ Example Forwarding Table for R1:
 ```
 
 
-## Wireshark Packet Capture and Analysis
+## 🔍 Wireshark Packet Capture and Analysis
 
 In addition to the coding aspect of this project, you will also need to demonstrate that you have your code working locally and can capture traffic sent across the loopback. In Canvas, you need to submit two screenshots of your Wireshark capture:
 
@@ -198,6 +201,6 @@ In addition to the coding aspect of this project, you will also need to demonstr
 Note: In this project, packets captured in Wireshark will not look like valid TCP packets. This is due to the addition of the `next_hop` field which is used in place of crafting Layer 2 packets. You can think of the `next_hop` field as a custom header that is added to the IP header for the purposes of this simulation. The `next_hop` field is used by the routers to determine where to forward the packet next, and it is not part of any standard protocol. Therefore, when you capture packets in Wireshark, you will see some unusual behavior such as several lines highlighted in red. Ignore these warning indicators and proceed with your analysis of the packet contents.
 
 
-## Running The Simulation
+## 🚀 Running The Simulation
 
 Run `uv run main.py` to start the simulation. Some output will be printed to the console showing the flow of the simulation, but the routers write their detailed logs to `trace.log` for analysis. Recommend using `tail -f trace.log` in a separate terminal to watch the router logs in real time.
